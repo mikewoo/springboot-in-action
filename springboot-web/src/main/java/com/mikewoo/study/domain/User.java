@@ -1,5 +1,10 @@
 package com.mikewoo.study.domain;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 /**
  * 用户实体类
  *
@@ -8,13 +13,20 @@ package com.mikewoo.study.domain;
  */
 public class User {
 
+    @NotEmpty(message = "id不能为空")
     private String id;
 
     private String name;
 
+    @Max(value = 105, message = "年龄不能大于105岁")
+    @Min(value = 18, message = "年龄不能小于18岁")
     private int age;
 
+    @Email(message = "邮箱格式不合法")
     private String email;
+
+    public User() {
+    }
 
     public String getId() {
         return id;
@@ -46,5 +58,15 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
