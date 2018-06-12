@@ -2,6 +2,8 @@ package com.mikewoo.study.mapper;
 
 import com.mikewoo.study.domain.User;
 import com.mikewoo.study.domain.UserSexEnum;
+import com.mikewoo.study.domain.page.Page;
+import com.mikewoo.study.domain.page.UserPageParam;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -62,5 +64,14 @@ public class UserMapperTest {
     public void delete() {
         Integer count = userMapper.delete(1L);
         LOG.info("delete count: {}", count);
+    }
+
+    @Test
+    public void pageTest() {
+        UserPageParam pageParam = new UserPageParam();
+        List<User> users = userMapper.findPageList(pageParam);
+        Integer count = userMapper.getCount(pageParam);
+        Page page = new Page(pageParam, count, users);
+        LOG.info("page: {}", page);
     }
 }

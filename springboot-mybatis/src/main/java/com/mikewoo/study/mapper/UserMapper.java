@@ -1,6 +1,7 @@
 package com.mikewoo.study.mapper;
 
 import com.mikewoo.study.domain.User;
+import com.mikewoo.study.domain.page.UserPageParam;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface UserMapper {
     Integer update(User user);
 
     Integer delete(Long id);
+
+    List<User> findPageList(UserPageParam pageParam);
+
+    Integer getCount(UserPageParam pageParam);
 }

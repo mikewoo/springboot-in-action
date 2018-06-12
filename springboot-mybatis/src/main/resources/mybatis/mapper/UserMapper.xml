@@ -8,7 +8,7 @@
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="user_sex" property="userSex" javaType="com.mikewoo.study.domain.UserSexEnum"/>
+        <result column="user_sex" property="userSex" jdbcType="TINYINT"/>
         <result column="nike_name" property="nikeName" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -16,7 +16,17 @@
         id, user_name, password, user_sex, nike_name
     </sql>
 
-    <insert id="insert" parameterType="com.mikewoo.study.domain.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <sql id="Base_Where_List">
+        <if test="userName != null and userName != ''">
+            AND user_name=#{userName}
+        </if>
+        <if test="userSex != null and userSex != ''">
+            AND user_sex=#{userSex}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="com.mikewoo.study.domain.User" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
         INSERT INTO
           users(user_name, password, user_sex, nike_name)
             VALUES (#{userName}, #{password}, #{userSex}, #{nikeName})
@@ -24,25 +34,25 @@
 
     <select id="getAll" resultMap="userMap">
         SELECT
-          <include refid="Base_Column_List"/>
-            FROM users
+        <include refid="Base_Column_List"/>
+        FROM users
     </select>
 
     <select id="findById" resultMap="userMap" parameterType="Long">
         SELECT
-          <include refid="Base_Column_List"/>
-            FROM users
-              WHERE id=#{id}
+        <include refid="Base_Column_List"/>
+        FROM users
+        WHERE id=#{id}
     </select>
 
     <update id="update" parameterType="com.mikewoo.study.domain.User">
         UPDATE
-          users
-            SET
-              <if test="userName != null">user_name=#{userName},</if>
-              <if test="password != null">password=#{password},</if>
-              <if test="nikeName != null">nike_name=#{nikeName}</if>
-                WHERE id=#{id}
+        users
+        SET
+        <if test="userName != null">user_name=#{userName},</if>
+        <if test="password != null">password=#{password},</if>
+        <if test="nikeName != null">nike_name=#{nikeName}</if>
+        WHERE id=#{id}
     </update>
 
     <delete id="delete" parameterType="Long">
@@ -50,4 +60,22 @@
           users
             WHERE id=#{id}
     </delete>
+
+    <select id="findPageList" resultMap="userMap" parameterType="com.mikewoo.study.domain.page.UserPageParam">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM users
+        WHERE 1=1
+        <include refid="Base_Where_List"/>
+        ORDER BY id DESC
+        LIMIT #{beginLine}, #{pageSize}
+    </select>
+
+    <select id="getCount" resultType="Integer" parameterType="com.mikewoo.study.domain.page.UserPageParam">
+        SELECT
+        count(1)
+        FROM users
+        WHERE 1=1
+        <include refid="Base_Where_List"/>
+    </select>
 </mapper>
