@@ -25,7 +25,6 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserMapperTest {
-
     private static final Logger LOG = LoggerFactory.getLogger(UserMapperTest.class);
 
     @Autowired
