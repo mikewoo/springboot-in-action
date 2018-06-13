@@ -59,4 +59,14 @@ public class User implements Serializable {
     public void setNikeName(String nikeName) {
         this.nikeName = nikeName;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", nikeName='" + nikeName + '\'' +
+                '}';
+    }
 }
