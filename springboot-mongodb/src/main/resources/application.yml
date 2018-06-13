@@ -3,3 +3,10 @@ spring:
     mongodb:
       uri: mongodb://192.168.33.100/test
       port: 27017
+mongodb:
+  primary:
+    uri: mongodb://192.168.33.100:27017
+    database: primary
+  secondary:
+    uri: mongodb://192.168.33.100:27017
+    database: secondary
