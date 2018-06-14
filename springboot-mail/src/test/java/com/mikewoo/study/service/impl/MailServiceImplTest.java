@@ -30,19 +30,19 @@ public class MailServiceImplTest {
     @Autowired
     private TemplateEngine templateEngine;
 
-    private String[] to = new String[]{"xxx@qq.com"};
+    private String[] to = new String[]{"yourusername@qq.com"};
 
     // 测试发送普通文本格式邮件
     @Test
     public void sendSimpleMail() {
-        mailService.sendSimpleMail(to, "主题：springboot测试", "这是一封测试springboot发送普通邮件的测试邮件", "xxx@gmail.com");
+        mailService.sendSimpleMail(to, "主题：springboot测试", "这是一封测试springboot发送普通邮件的测试邮件", "yourusername@gmail.com");
     }
 
     // 测试发送HTML页面格式的页面
     @Test
     public void sendHtmlMail() {
         String content = "<html>\n" + "<body>\n" + "<h3>这是一封测试springboot发送HTML邮件的测试邮件</h3>\n" + "</body>\n" + "</html>";
-        mailService.sendHtmlMail(to, "主题：springbootHTML邮件测试", content, "xxx@gmail.com");
+        mailService.sendHtmlMail(to, "主题：springbootHTML邮件测试", content, "yourusername@gmail.com");
     }
 
     // 测试发送带附件的邮件
@@ -52,7 +52,7 @@ public class MailServiceImplTest {
             "D:\\tmp\\tomcat-api.jar",
              "D:\\tmp\\resources.jar"
         };
-        mailService.sendAttachmentsMail(to, "主题：springboot带附件邮件测试", "这是一封测试springboot发送带附件邮件的测试邮件", filePaths, "xxx@gmail.com");
+        mailService.sendAttachmentsMail(to, "主题：springboot带附件邮件测试", "这是一封测试springboot发送带附件邮件的测试邮件", filePaths, "yourusername@gmail.com");
     }
 
     // 测试发送嵌入图片等静态资源的邮件
@@ -63,7 +63,7 @@ public class MailServiceImplTest {
         String rscPath = "D:\\tmp\\springboot.png";
         Map<String, String> resources = new HashMap<>();
         resources.put(rscId, rscPath);
-        mailService.sendInlineResourcesMail(to, "主题：springboot静态资源邮件测试", content, resources, "xxx@gmail.com");
+        mailService.sendInlineResourcesMail(to, "主题：springboot静态资源邮件测试", content, resources, "yourusername@gmail.com");
     }
 
     // 测试发送激活邮件
