@@ -1,0 +1,37 @@
+# kafka config
+spring:
+  kafka:
+    # \u6307\u5B9Akafka broker\u5730\u5740\uFF0C\u591A\u4E2A\u7528\u90FD\u597D\u9694\u5F00
+    bootstrap-servers: 192.168.33.100:9092
+
+    # kafka producer config
+    producer:
+      retries: 0
+      # \u6BCF\u6B21\u6279\u91CF\u53D1\u9001\u6D88\u606F\u7684\u6570\u91CF
+      batch-size: 16384
+      buffer-memory: 33554432
+      # \u6307\u5B9A\u6D88\u606Fkey\u548C\u6D88\u606F\u4F53\u7684\u7F16\u7801\u65B9\u5F0F
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger.ms: 1
+
+    # kafka consumer config
+    consumer:
+      # \u6307\u5B9A\u9ED8\u8BA4\u6D88\u8D39\u8005group id
+      # group-id: springboot-kafka-test
+      enable-auto-commit: true
+      auto-commit-interval: 100ms
+      # \u6307\u5B9A\u6D88\u606Fkey\u548C\u6D88\u606F\u4F53\u7684\u89E3\u7801\u65B9\u5F0F
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session.timeout.ms: 15000
+
+kafka:
+  topic:
+    groupId: springboot-kafka-test
+    topicName:
+      - topic1
+      - topic2
+      - topic3
