@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>springboot thymeleaf web</title>
+</head>
+<body>
+    <div th:replace="~{fragment/header :: header}"></div>
+    <h3 th:text="${userModel.title}">title</h3>
+    <a href="/users/form.html" th:href="@{/users/form}">创建</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>用户名</td>
+                <td>年龄</td>
+                <td>邮箱</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${userModel.userList.size()} eq 0">
+                <td colspan="4">没有用户信息！</td>
+            </tr>
+            <tr th:each="user : ${userModel.userList}">
+                <td th:text="${user.id}">id</td>
+                <td th:text="${user.name}">name</td>
+                <td th:text="${user.age}">age</td>
+                <td th:text="${user.email}">email</td>
+                <td><a th:href="@{'/users/' + ${user.id}}">详情</a></td>
+                <td><a th:href="@{'/users/delete/' + ${user.id}}" onclick="return confirm('确认是否删除此用户？')">删除</a></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <div th:replace="~{fragment/footer :: footer}"></div>
+</body>
+</html>

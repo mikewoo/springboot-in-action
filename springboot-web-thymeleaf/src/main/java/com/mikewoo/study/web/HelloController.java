@@ -26,9 +26,9 @@ public class HelloController {
     @RequestMapping("/index")
     public String index(Model model) {
         List<User> users = new ArrayList<>();
-        users.add(new User("phantom", 29, "123456"));
-        users.add(new User("eric", 31, "123321"));
-        users.add(new User("skye", 28, "143562"));
+        users.add(new User(1000L, "phantom", 29, "123456"));
+        users.add(new User(1001L, "eric", 31, "123321"));
+        users.add(new User(1003L, "skye", 28, "143562"));
         model.addAttribute("users", users);
         return "index";
     }
