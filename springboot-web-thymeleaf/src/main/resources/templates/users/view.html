@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>springboot thymeleaf web</title>
+<head th:replace="~{fragment/header :: header}">
 </head>
 <body>
-<div th:replace="~{fragment/header :: header}"></div>
-<h3 th:text="${userModel.title}">title</h3>
-
-<div>
-    <p><strong>ID:</strong><span th:text="${userModel.user.id}">id</span></p>
-    <p><strong>ID:</strong><span th:text="${userModel.user.name}">name</span></p>
-    <p><strong>ID:</strong><span th:text="${userModel.user.age}">age</span></p>
-    <p><strong>ID:</strong><span th:text="${userModel.user.email}">email</span></p>
-</div>
-<div>
-    <a th:href="@{'/users/modify/' + ${userModel.user.id}}">修改</a>
-</div>
-<div th:replace="~{fragment/footer :: footer}"></div>
+    <div class="container">
+        <div class="row">
+            <h3 th:text="${userModel.title}">title</h3>
+        </div>
+        <div class="row">
+            <p class="text-left"><strong>ID:</strong><span th:text="${userModel.user.id}">id</span></p>
+            <p class="text-left"><strong>用户名:</strong><span th:text="${userModel.user.name}">name</span></p>
+            <p class="text-left"><strong>年龄:</strong><span th:text="${userModel.user.age}">age</span></p>
+            <p class="text-left"><strong>邮箱:</strong><span th:text="${userModel.user.email}">email</span></p>
+        </div>
+        <div class="row">
+            <p>
+                <a class="btn btn-primary" th:href="@{'/users/modify/' + ${userModel.user.id}}">修改</a>
+            </p>
+        </div>
+    </div>
+    <div th:replace="~{fragment/footer :: footer}"></div>
 </body>
 </html>
