@@ -21,30 +21,26 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a class="navbar-brand" href="/users">用户管理系统</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/users">首页</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <div sec:authorize="isAuthenticated()" >
+                <div class="nav navbar-nav navbar-right">
+                    <div sec:authorize="isAuthenticated()" >
+                        <form action="/logout" th:action="@{/logout}" method="post">
                             <span sec:authentication="name"></span>
-                            <a href="/logout" th:href="@{~/logout}" class="btn btn-outline-success" type="submit">退出</a>
-                        </div>
+                            <input class="btn btn-outline-success " type="submit" value="退出">
+                        </form>
+                    </div>
 
-                        <div sec:authorize="isAnonymous()">
-                            <a href="/login" th:href="@{~/login}" class="btn btn-outline-success" type="submit">登录</a>
-                        </div>
-                    </li>
-                </ul>
+                    <div sec:authorize="isAnonymous()">
+                        <form action="/login" th:action="@{~/login}" method="post">
+                            <input class="btn btn-outline-success " type="submit" value="登录">
+                        </form>
+                    </div>
+                </div>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
