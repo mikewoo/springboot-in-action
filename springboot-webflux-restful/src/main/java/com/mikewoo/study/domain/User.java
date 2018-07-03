@@ -3,10 +3,7 @@ package com.mikewoo.study.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * 用户实体类
@@ -32,7 +29,8 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    @Size(max = 100, message = "年龄不大于100岁！")
+    @Min(value = 18, message = "年龄不能小于18周岁！")
+    @Max(value = 100, message = "年龄不能大于100周岁！")
     private Integer age;
 
     @Column(nullable = false)
