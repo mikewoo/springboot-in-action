@@ -3,7 +3,6 @@ package com.mikewoo.study.web;
 import com.mikewoo.study.domain.User;
 import com.mikewoo.study.web.handler.UserHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,7 +17,7 @@ import reactor.core.publisher.Mono;
 @RequestMapping(value = "/users")
 public class UserController {
 
-    @Autowired(required = false)
+    @Autowired
     private UserHandler userHandler;
 
     /**

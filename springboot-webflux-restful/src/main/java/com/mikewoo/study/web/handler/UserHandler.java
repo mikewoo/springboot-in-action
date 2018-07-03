@@ -4,7 +4,6 @@ import com.mikewoo.study.domain.User;
 import com.mikewoo.study.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -14,6 +13,7 @@ import reactor.core.publisher.Mono;
  * @auther Phantom Gui
  * @date 2018/7/3 10:30
  */
+@Component
 public class UserHandler {
 
     @Autowired
