@@ -20,11 +20,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/css/**", "/js/**", "/index").permitAll()
+            .antMatchers("/css/**", "/js/**","/images/**", "/").permitAll()
             .antMatchers("/users/**").hasRole("ADMIN")
+            .and()
+            .logout().permitAll()
             .and()
             .formLogin()
             .loginPage("/login").failureUrl("/login-error");
+        http.csrf().disable();
     }
 
     @Autowired
