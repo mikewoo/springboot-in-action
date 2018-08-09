@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/header :: header}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h3 th:text="'欢迎登录, ' + ${session.user.username}">title</h3>
+    </div>
+</div>
+<div th:replace="~{fragment/footer :: footer}"></div>
+</body>
+</html>
