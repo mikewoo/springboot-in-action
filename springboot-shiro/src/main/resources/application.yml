@@ -21,10 +21,13 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
-      stat-view-servlet:
-        login-username: admin
-        login-password: admin
+#      stat-view-servlet:
+#        login-username: admin
+#        login-password: admin
       filter:
         stat:
           log-slow-sql: true
           slow-sql-millis: 2000
+          mergeSql: true
+        wall:
+          dbType: mysql
