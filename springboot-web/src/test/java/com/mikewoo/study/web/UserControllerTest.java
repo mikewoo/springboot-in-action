@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -34,9 +35,12 @@ public class UserControllerTest {
 
     private MockMvc mockMvc;
 
-    @Before
-    public void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new UserController()).build();
+    @Autowired
+    protected WebApplicationContext wac;
+
+    @Before()  //这个方法在每个方法执行之前都会执行一遍
+    public void setup() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();  //初始化MockMvc对象
     }
 
     @Test
