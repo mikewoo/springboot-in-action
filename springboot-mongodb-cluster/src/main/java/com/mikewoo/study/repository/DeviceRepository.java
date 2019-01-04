@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface DeviceRepository extends MongoRepository<Device, Long> {
 
-    @Query("{ 'id' : ?0 }")
+    @Query("{ 'device_id' : ?0 }")
     List<Device> findByDeviceId(Long id);
 
     @Query("{'status':{'$ne':?0}}")

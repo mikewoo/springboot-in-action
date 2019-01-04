@@ -40,7 +40,7 @@ public class DeviceRepositoryTest {
 
     @Test
     public void findById() {
-        List<Device> devices = repository.findByDeviceId(100020L);
+        List<Device> devices = repository.findByDeviceId(10002L);
         if (Objects.nonNull(devices)) {
             devices.forEach(System.out::println);
         }

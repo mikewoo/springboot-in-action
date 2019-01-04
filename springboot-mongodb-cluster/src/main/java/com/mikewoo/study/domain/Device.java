@@ -15,7 +15,7 @@ public class Device {
     @Field("_id")
     private String objectId;
 
-    @Field("id")
+    @Field("device_id")
     private Long id;
 
     @Field("device_number")
